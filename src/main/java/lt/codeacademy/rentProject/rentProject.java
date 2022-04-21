@@ -10,6 +10,7 @@ public class rentProject {
 
 	public static void main(String[] args) {
 		SpringApplication.run(rentProject.class, args);
+		System.out.println("");
 
 
 	}
