@@ -1,0 +1,2 @@
+--INSERT INTO property(title, price, description, city, country) VALUES ("Apartament", 60000.00, "Good apartament in city center, low utility price", "Kaunas", "Lithuania");
+--INSERT INTO property(title, price, description, city, country) VALUES ("House", 500000.00, "Very house, very nice, very big", "Pagiegiai", "Lithuania");
