@@ -1,2 +1,4 @@
---INSERT INTO property(title, price, description, city, country) VALUES ("Apartament", 60000.00, "Good apartament in city center, low utility price", "Kaunas", "Lithuania");
---INSERT INTO property(title, price, description, city, country) VALUES ("House", 500000.00, "Very house, very nice, very big", "Pagiegiai", "Lithuania");
+--INSERT INTO property(title, price, description, city, country) VALUES ("Apartament In Kaunas City Center", 60000.00, "Good apartament in city center, low utility price", "Kaunas", "Lithuania");
+--INSERT INTO property(title, price, description, city, country) VALUES ("House Near River \"Nemunas\"", 99000.00, "Very house, very nice, very big", "Druskininkai", "Lithuania");
+--INSERT INTO property(title, price, description, city, country) VALUES ("Single Room In Old Town", 8800000.00, "Sahred Space House", "Vilnius", "Lithuania");
+--INSERT INTO property(title, price, description, city, country) VALUES ("2 Bedroom Apt Near \"Akropolis\"", 8700000.00, "Cosy Appartment, Low Living Costs", "Klaipeda", "Lithuania");
