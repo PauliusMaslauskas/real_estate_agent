@@ -1,8 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
-<body>
-<h1>Something went wrong! </h1>
-<h2>Our Engineers are on it</h2>
-<a th:href="@{/properties}">Go Home</a>
+
+<body style="
+    height: auto;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;">
+
+
+<title>Estate& | ERROR</title>
+
+<div>
+    <h1 style="margin-bottom: 3rem; font-size: 3rem;" >Something went wrong! </h1>
+    <h2>Our team are on it (hopefully)</h2>
+</div>
+
+<div>
+<img class="rounded" src="sadCat.png" alt="sadCat" style="width: 20rem; height: 25rem; margin: 1rem;" >
+</div>
+
+
+<div>
+    <a th:href="@{/properties}">Back To Main Page</a>
+</div>
+
 </body>
+
+<style>
+body {
+  background-image: url('rain2.png');
+}
+</style>
+
+
 </html>
