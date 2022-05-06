@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 @Entity
 @Getter
@@ -17,9 +19,12 @@ public class Property {
     private int id;
 
     @Column(name = "title")
+    @Size(min = 1, max = 20, message = "#{Min.property.title}" )
     private String title;
 
+
     @Column(name = "price")
+    @Min(value = 0, message = "#{Min.property.price}")
     private double price;
 
     @Column(name = "description")

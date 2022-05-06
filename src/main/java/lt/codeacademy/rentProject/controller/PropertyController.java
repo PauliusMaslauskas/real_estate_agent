@@ -1,34 +1,40 @@
 package lt.codeacademy.rentProject.controller;
 
 import lt.codeacademy.rentProject.entity.Property;
-import lt.codeacademy.rentProject.exeption.PropertyNotFoundException;
-import lt.codeacademy.rentProject.repository.PropertyRepository;
+import lt.codeacademy.rentProject.entity.UserEntity;
+import lt.codeacademy.rentProject.service.PropertyService;
+import lt.codeacademy.rentProject.service.UserService;
+import org.apache.catalina.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
+
 
 @Controller
 @RequestMapping(path = "/properties")
 public class PropertyController {
 
-    public PropertyRepository propertyRepository;
+    private final PropertyService propertyService;
+    private final UserService userService;
 
-    public PropertyController(PropertyRepository propertyRepository) {
-        this.propertyRepository = propertyRepository;
+
+    public PropertyController(PropertyService propertyService, UserService userService) {
+        this.propertyService = propertyService;
+        this.userService = userService;
     }
 
     @GetMapping
     public String getPropertyList(
             @RequestParam(name = "page", defaultValue = "0") int pageNumber,
             Model model) {
-        Pageable pageable = Pageable.ofSize(20).withPage(pageNumber);
 
-        Page<Property> propertyPage = propertyRepository.findAll(pageable);
+        Page<Property> propertyPage = propertyService.findAllPagable(25, pageNumber);
 
         List<Property> properties = propertyPage.getContent();
 
@@ -46,12 +52,7 @@ public class PropertyController {
             @RequestParam(name = "showPrice", required = false) boolean showPrice,
             Model model
     ) {
-        Optional<Property> foundProperty = propertyRepository.findById(id);
-
-        if (foundProperty.isEmpty()) {
-            throw new PropertyNotFoundException();
-        }
-        Property property = foundProperty.get();
+        Property property = propertyService.findById(id);
 
         model.addAttribute("showPrice", showPrice);
         model.addAttribute("property", property);
@@ -59,17 +60,35 @@ public class PropertyController {
     }
 
     @GetMapping("/property")
-    public String getPostedProperty(Model model){
+    public String getPostedProperty( Model model){
         model.addAttribute("property", new Property());
         return "propertyForm";
     }
 
     @PostMapping("/postproperty")
-    public String postProperty(Property property, Model model){
-        Property listedProperty = propertyRepository.save(property);
+    public String postProperty(@Valid Property property, BindingResult errors, Model model){
+        if (errors.hasErrors()){
+            return "propertyForm";
+        }
 
+        Property listedProperty = propertyService.create(property);
         model.addAttribute("property", listedProperty);
         return "redirect:/properties/" + listedProperty.getId();
     }
+
+    @GetMapping("/registration")
+    public String getRegisteredUser(Model model){
+        model.addAttribute("user", new UserEntity());
+        return "registrationForm";
+    }
+
+    @PostMapping("/register")
+    public String postProperty(UserEntity userEntity, Model model){
+        UserEntity createdUser = userService.create(userEntity);
+
+        model.addAttribute("user", createdUser);
+        return "redirect:/properties";
+    }
+
 
 }

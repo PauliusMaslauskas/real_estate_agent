@@ -1,0 +1,43 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+
+<nav style="background-image: view.jpg; height: 15rem;" class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+     <h1 class="title" style="font-weight: 200; letter-spacing:3px;">Estate&</h1>
+    <span>
+         <a th:href="@{?Lang=LT}"><img th:src="@{/images/ltflag.png}" style="width: 1.5rem; height: 1rem;"></a>
+         <a th:href="@{?Lang=ENG}"><img th:src="@{/images/ukflag.png}" style="width: 1.5rem; height: 1rem;"></a>
+    </span>
+  </div>
+
+</div>
+</nav>
+
+
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <form class="d-flex input-group w-auto">
+      <input type="search"class="form-control rounded" placeholder="Search" aria-label="Search"aria-describedby="search-addon"/>
+        <input style="background-color: #5F9EA0; margin-left: 5px;" class="btn btn-light rounded" type="submit" th:value="#{searchKey}">
+        <i class="fas fa-search"></i>
+      </span>
+    </form>
+  </div>
+</nav>
+
+<nav class="navbar sticky-top navbar-light bg-light">
+  <div class="container-fluid">
+  <span>
+    <a class="navbar-brand" th:href="@{/properties}" th:text="#{homePageKey}"></a>
+    <a class="navbar-brand" style="underline: none; color: green;" type="button"  th:href="@{/properties/property}" th:text="#{listPropertyKey}"></a>
+</span>
+         <div class="d-flex align-items-center">
+                 <a style="margin-right: 10px;" role="" th:text="#{loginKey}"></a>
+                 <a th:href="@{/properties/registration}" role="" th:text="#{registerKey}"></a>
+           </div>
+
+  </div>
+
+</nav>
+
+</html>
