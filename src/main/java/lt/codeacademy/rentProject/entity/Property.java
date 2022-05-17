@@ -16,7 +16,7 @@ public class Property {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "title")
     @Size(min = 1, max = 20, message = "#{Min.property.title}" )
@@ -36,16 +36,5 @@ public class Property {
     @Column(name = "country")
     private String country;
 
-    @Override
-    public String toString() {
-        return "Property{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                ", city='" + city + '\'' +
-                ", country='" + country + '\'' +
-                '}';
     }
-}
 

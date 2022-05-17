@@ -1,12 +1,10 @@
 package lt.codeacademy.rentProject.controller;
 
 import lt.codeacademy.rentProject.entity.Property;
-import lt.codeacademy.rentProject.entity.UserEntity;
+import lt.codeacademy.rentProject.entity.User;
 import lt.codeacademy.rentProject.service.PropertyService;
 import lt.codeacademy.rentProject.service.UserService;
-import org.apache.catalina.User;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +15,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping(path = "/properties")
+@RequestMapping("/properties")
 public class PropertyController {
 
     private final PropertyService propertyService;
@@ -78,13 +76,13 @@ public class PropertyController {
 
     @GetMapping("/registration")
     public String getRegisteredUser(Model model){
-        model.addAttribute("user", new UserEntity());
+        model.addAttribute("user", new User());
         return "registrationForm";
     }
 
     @PostMapping("/register")
-    public String postProperty(UserEntity userEntity, Model model){
-        UserEntity createdUser = userService.create(userEntity);
+    public String postProperty(User userEntity, Model model){
+        User createdUser = userService.create(userEntity);
 
         model.addAttribute("user", createdUser);
         return "redirect:/properties";
