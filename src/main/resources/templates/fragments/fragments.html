@@ -3,7 +3,7 @@
 <nav style="height: 10rem;" class="navbar navbar-light bg-light">
   <div class="container-fluid">
      <h1 class="title" style="font-weight: 200; letter-spacing:3px;">Estate&</h1>
-    <span>
+    <span >
          <a th:href="@{?Lang=LT}"><img th:src="@{/images/ltflag.png}" style="width: 1.5rem; height: 1rem;"></a>
          <a th:href="@{?Lang=ENG}"><img th:src="@{/images/ukflag.png}" style="width: 1.5rem; height: 1rem;"></a>
     </span>
@@ -13,13 +13,13 @@
 
 <nav class="navbar sticky-top navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" th:href="@{/properties}" th:text="#{homePageKey}"></a>
-    <a class="navbar-brand" style="underline: none; color: green;" type="button"  th:href="@{/properties/property}" th:text="#{listPropertyKey}"></a>
+    <a class="navbar-brand" th:href="@{/public/properties}" th:text="#{homePageKey}"></a>
+    <a class="navbar-brand" style="underline: none; color: green;" type="button"  th:href="@{/private/properties/property}" th:text="#{listPropertyKey}"></a>
 
 <div class="d-flex align-items-center">
-    <a style="margin-right: 10px; color: black; outline: none;" role="" th:text="#{loginKey}"></a>
-    <a style="color: black; text-decoration: none;" th:href="@{/properties/registration}" role="" th:text="#{registerKey}"></a>
-    <a style="color: black; text-decoration: none;" th:href="@{/favourites}" role="" th:text="#{favouriteKey}"></a>
+    <a style="margin-right: 10px; color: black; outline: none;" role="" th:href="@{/public/properties/login}" th:text="#{loginKey}"></a>
+    <a style="color: black; text-decoration: none;" th:href="@{/public/properties/registration}" role="" th:text="#{registerKey}"></a>
+    <a style="color: black; text-decoration: none;" th:href="@{/private/favourites}" role="" th:text="#{favouriteKey}"></a>
         </div>
     </div>
 </nav>

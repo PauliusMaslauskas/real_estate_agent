@@ -31,11 +31,11 @@ color: black;
         <div class="col" th:each="property: ${properties}">
             <div class="rounded" style="background-color: #DCDCDC; width: 15rem; height: 18rem; margin-top: 3rem;" >
                     <div class="text-center">
-                     <img class="rounded" th:src="@{images/house.jpg}" alt="Flowers" style="width: 11rem; height: 13rem; margin: 1rem;" >
+                     <img class="rounded" th:src="@{/images/house.jpg}" alt=">:(" style="width: 11rem; height: 13rem; margin: 1rem;" >
                     </div>
                     <div class="text-center">
-                        <a th:text="${property.getTitle()}" th:href="@{/properties/{id}(id=${property.getId()})}" style="font-size: 0.8rem; display: block;  ">
-                            <img class="rounded" th:src="@{images/house.jpg}" style="width: 11rem; height: 13rem; margin: 1rem;" >
+                        <a th:text="${property.getTitle()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="font-size: 0.8rem; display: block;  ">
+                            <img class="rounded" th:src="@{/images/house.jpg}" style="width: 11rem; height: 13rem; margin: 1rem;" >
                         </a>
                     </div>
                 </div>
@@ -43,14 +43,12 @@ color: black;
     </div>
 </div>
 
-
-
 <div>
-    <a th:href="@{/properties(page=${currentPage - 1})}"> < </a>
+    <a th:href="@{/public/properties(page=${currentPage - 1})}"> < </a>
     <span th:each="page: ${#numbers.sequence(0, totalPages - 1)}">
-                <a th:href="@{/properties(page=${page})}" th:text="${page + 1}"></a>
+                <a th:href="@{/public/properties(page=${page})}" th:text="${page + 1}"></a>
             </span>
-    <a th:href="@{/properties(page=${currentPage + 1})}"> > </a>
+    <a th:href="@{/public/properties(page=${currentPage + 1})}"> > </a>
 </div>
 
 

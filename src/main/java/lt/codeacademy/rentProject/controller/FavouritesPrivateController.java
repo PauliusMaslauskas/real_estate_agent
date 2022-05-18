@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/favourites")
+@RequestMapping("/private/favourites")
 @SessionAttributes("favourites")
 public class FavouritesPrivateController {
 
