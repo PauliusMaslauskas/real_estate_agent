@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/rentdb
+    username: rent
+    password: admin
+    initialization-mode: always
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  security:
+    user:
+      name: admin
+      password: admin
+
+server:
+  error:
+    whitelabel:
+      enabled: false

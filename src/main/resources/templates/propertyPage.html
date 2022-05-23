@@ -28,11 +28,16 @@
 
 <div th:replace="fragments/fragments :: html"></div>
 
+ <hr/>
+    <form th:action="@{/private/favourites/add/{id}(id=*{id})}" method="post" style="display: inline;">
+        <button type="submit" th:text="#{addToFavouritesKey}"></button>
+    </form>
 
-<form th:action="@{/favourites/add/{id}(id=*{id})}" method="post">
-    <button type="submit" th:text="#{addToFavouritesKey}"></button>
-</form>
+    <form method="post" style="display: inline;">
+        <button type="submit" th:text="#{shareLinkKey}"></button>
+    </form>
 
+ <hr/>
 
 <div th:object="${property}" style="margin-bottom:1.5rem;">
     <h1 th:text="*{title}"></h1>

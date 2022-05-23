@@ -1,6 +1,5 @@
 package lt.codeacademy.rentProject.controller;
 
-
 import lt.codeacademy.rentProject.entity.Property;
 import lt.codeacademy.rentProject.service.PropertyService;
 import org.springframework.data.domain.Page;
@@ -15,18 +14,18 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/public/properties")
-public class PagePublicContreoller {
+public class PagePublicController {
 
     private final PropertyService propertyService;
 
-    public PagePublicContreoller(PropertyService propertyService) {
+    public PagePublicController(PropertyService propertyService) {
         this.propertyService = propertyService;
     }
 
     @GetMapping
     public String getPropertyList(@RequestParam(name = "page", defaultValue = "0") int pageNumber, Model model) {
 
-        Page<Property> propertyPage = propertyService.findAllPagable(25, pageNumber);
+        Page<Property> propertyPage = propertyService.findAllPagable(15, pageNumber);
 
         List<Property> properties = propertyPage.getContent();
 

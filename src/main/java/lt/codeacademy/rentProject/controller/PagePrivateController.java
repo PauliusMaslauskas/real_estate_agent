@@ -1,5 +1,6 @@
 package lt.codeacademy.rentProject.controller;
 
+import lombok.AllArgsConstructor;
 import lt.codeacademy.rentProject.entity.Property;
 import lt.codeacademy.rentProject.service.PropertyService;
 import org.springframework.stereotype.Controller;
@@ -12,14 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
 @Controller
+@AllArgsConstructor
 @RequestMapping("/private/properties")
-public class PagePrivateContreoller {
+public class PagePrivateController {
 
     private final PropertyService propertyService;
-
-    public PagePrivateContreoller(PropertyService propertyService) {
-        this.propertyService = propertyService;
-    }
 
     @GetMapping("/property")
     public String getPostedProperty( Model model){
@@ -35,7 +33,7 @@ public class PagePrivateContreoller {
 
         Property listedProperty = propertyService.create(property);
         model.addAttribute("property", listedProperty);
-        return "redirect:/properties/" + listedProperty.getId();
+        return "redirect:/public/properties/" + listedProperty.getId();
     }
 
 }

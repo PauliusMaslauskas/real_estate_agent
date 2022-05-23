@@ -32,7 +32,7 @@ public class FavouritesPrivateController {
     @PostMapping("/add/{id}")
     public String addToFavourites(@PathVariable("id") Integer id, @ModelAttribute("favourites") List<Property> favourites) {
         favourites.add(propertyService.findById(id));
-        return "redirect:/properties/{id}";
+        return "redirect:/public/properties/{id}";
     }
 
     @PostMapping("/delete/{id}")
@@ -41,7 +41,7 @@ public class FavouritesPrivateController {
                 .filter(p-> p.getId().equals(id))
                 .findFirst()
                 .ifPresent(favourites::remove);
-        return "redirect:/favourites";
+        return "redirect:/private/favourites";
     }
 
     @ModelAttribute("favourites")

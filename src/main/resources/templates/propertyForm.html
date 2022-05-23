@@ -28,7 +28,7 @@ color: red;
 
 <h1 style="margin-top: 2rem;">List Your Own Property!</h1>
 
-<form th:action="@{/properties/postproperty}" th:object="${property}" method="post">
+<form th:action="@{/private/properties/postproperty}" th:object="${property}" method="post">
     <div class="form-group">
         <label for="exampleFormControlInput1" th:text="#{titleKey}"></label>
         <input type="text" class="form-control" th:field="*{title}" id="exampleFormControlInput1" placeholder="title">

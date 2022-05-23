@@ -17,33 +17,45 @@ color: black;
 
 </head>
 
-<body style="
-    height: auto;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;">
-
+<body  style="
+          height: auto;
+          width: 60%;
+          margin-left: auto;
+          margin-right: auto;">
 
 <div th:replace="fragments/fragments :: html"></div>
 
-<div class="container">
-    <div class="row">
-        <div class="col" th:each="property: ${properties}">
-            <div class="rounded" style="background-color: #DCDCDC; width: 15rem; height: 18rem; margin-top: 3rem;" >
-                    <div class="text-center">
-                     <img class="rounded" th:src="@{/images/house.jpg}" alt=">:(" style="width: 11rem; height: 13rem; margin: 1rem;" >
-                    </div>
-                    <div class="text-center">
-                        <a th:text="${property.getTitle()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="font-size: 0.8rem; display: block;  ">
-                            <img class="rounded" th:src="@{/images/house.jpg}" style="width: 11rem; height: 13rem; margin: 1rem;" >
-                        </a>
-                    </div>
-                </div>
+
+
+<div class="d-flex border border-top-0" th:each="property: ${properties}" style="background-color: #F0F8FF; margin-bottom: 2rem; margin-top: 2rem;">
+
+
+        <div class="p-2 flex-shrink-1">
+            <img class="" th:src="@{/images/house.jpg}" alt=">:(" style="width: 8.5rem; height: 7.5rem; margin: -0.5rem;" >
         </div>
-    </div>
+
+        <div class="p-2 w-100" th:href="@{/public/properties/{id}(id=${property.getId()})}">
+            <div>
+                <a th:text="${property.getTitle()}" th:href="@{/public/properties/{id}(id=${property.getId()})}">
+            </div>
+
+            <div>
+                <a th:text="${property.getPrice()} + ' ' + Eur">
+            </div>
+
+            <div>
+                <a th:text="${property.getCity()}">
+            </div>
+
+            <div>
+                <a th:text="${property.getCountry()}">
+            </div>
+
+        </div>
 </div>
 
-<div>
+
+<div style="text-align: center; margin-bottom: 2rem;">
     <a th:href="@{/public/properties(page=${currentPage - 1})}"> < </a>
     <span th:each="page: ${#numbers.sequence(0, totalPages - 1)}">
                 <a th:href="@{/public/properties(page=${page})}" th:text="${page + 1}"></a>
