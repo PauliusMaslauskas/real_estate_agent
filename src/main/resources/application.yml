@@ -3,11 +3,11 @@ spring:
     url: jdbc:mysql://localhost:3306/rentdb
     username: rent
     password: admin
-    initialization-mode: always
+    initialization-mode: never
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     show-sql: true
     properties:
       hibernate:

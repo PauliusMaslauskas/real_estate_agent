@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
 
 @Entity
 @Getter
@@ -18,9 +17,35 @@ public class Property {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "title")
-    @Size(min = 1, max = 100, message = "#{Min.property.title}" )
-    private String title;
+    @Column(name = "PropertyType")
+    private String propertytype;
+
+    @Column(name = "Municipality")
+    private String municipality;
+
+    @Column(name = "NoOfRooms")
+    private String noofrooms;
+
+    @Column(name = "Area")
+    private String area;
+
+    @Column(name = "Equipment")
+    private String equipment;
+
+    @Column(name = "PricePerSqMeter")
+    private String pricepersqmeter;
+
+    @Column(name = "BuitYear")
+    private String builtyear;
+
+    @Column(name = "Floors")
+    private String floors;
+
+    @Column(name = "Floor")
+    private String floor;
+
+    @Column(name = "Seller")
+    private String seller;
 
 
     @Column(name = "price")
@@ -30,11 +55,7 @@ public class Property {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "city")
-    private String city;
 
-    @Column(name = "country")
-    private String country;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="user_id")
