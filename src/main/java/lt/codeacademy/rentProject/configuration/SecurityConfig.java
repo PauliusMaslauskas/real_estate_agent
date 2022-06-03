@@ -1,7 +1,6 @@
 package lt.codeacademy.rentProject.configuration;
 
 
-import lombok.AllArgsConstructor;
 import lt.codeacademy.rentProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -60,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.
                 csrf().disable()
                 .authorizeRequests()
-                .antMatchers( "/public/**","/login/**", "/logout/**").permitAll()
+                .antMatchers( "/public/**","/login/**", "/logout/**", "/error/**").permitAll()
                 .and().authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
@@ -72,6 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/login?error=true")
                 .and()
                 .logout()
+                .logoutSuccessUrl("/public/properties")
                 .permitAll();
 
     }

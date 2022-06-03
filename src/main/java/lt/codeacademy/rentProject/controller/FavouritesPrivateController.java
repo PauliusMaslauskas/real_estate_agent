@@ -26,7 +26,7 @@ public class FavouritesPrivateController {
 
     @GetMapping
     public String getFavouritesView(@ModelAttribute("favourites") List<Property> favourites, HttpSession httpSession) {
-        return "propertyFavourites";
+        return "propertyFavourites1";
     }
 
     @PostMapping("/add/{id}")

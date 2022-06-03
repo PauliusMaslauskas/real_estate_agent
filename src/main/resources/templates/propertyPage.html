@@ -18,7 +18,11 @@
     }
 </style>
 
+
+
 </head>
+
+
 
 <body style="
     height: auto;
@@ -26,18 +30,23 @@
     margin-left: auto;
     margin-right: auto;">
 
+
 <div th:replace="fragments/fragments :: html"></div>
 
- <hr/>
-    <form th:action="@{/private/favourites/add/{id}(id=*{id})}" method="post" style="display: inline;">
-        <button type="submit" th:text="#{addToFavouritesKey}"></button>
-    </form>
-
-    <form method="post" style="display: inline;">
-        <button type="submit" th:text="#{shareLinkKey}"></button>
-    </form>
 
  <hr/>
+
+        <form th:action="@{/private/favourites/add/{id}(id=*{id})}" method="post" style="display: inline; height:100px;">
+            <button class="ok" type="submit" style="min-width: 72px; height: auto; display: inline-block; vertical-align: top; border: none; background: none;">
+                <i class="fas fa-heart" style="display: block; font-size: 23px;"></i>
+                <span th:text="#{addToFavouritesKey}"></span>
+            </button>
+        </form>
+            <button th:onclick="copyToClipboard()" class="ok" type="submit" style="min-width: 72px; height: auto; display: inline-block; vertical-align: top; border: none; background: none;">
+                 <i class="fas fa-share" style="display: block; font-size: 23px;"></i>
+                 <span th:text="#{shareLinkKey}"></span>
+           </button>
+
 
 <div th:object="${property}" style="margin-bottom:1.5rem;">
 </div>
@@ -46,19 +55,19 @@
   <div style="height: 50rem; width:50rem; " class="carousel-inner">
 
     <div class="carousel-item active">
-      <img th:src="@{https://picsum.photos/600/450?}" class="d-block w-100" alt="Sunset Over the City"/>
+           <img th:src="${property.getImages().stream().findAny().get().getPhotosImagePath()}" alt=">:(" style="height: 35rem; width: 40rem;" >
       <div class="carousel-caption d-none d-md-block">
       </div>
     </div>
 
     <div class="carousel-item">
-      <img th:src="@{https://picsum.photos/600/451}" class="d-block w-100" alt="Canyon at Nigh"/>
+           <img th:src="${property.getImages().stream().findAny().get().getPhotosImagePath()}" alt=">:(" style="height: 35rem; width: 40rem;" >
       <div class="carousel-caption d-none d-md-block">
       </div>
     </div>
 
     <div class="carousel-item">
-      <img th:src="@{https://picsum.photos/600/451?}" class="d-block w-100" alt="Cliff Above a Stormy Sea"/>
+           <img th:src="${property.getImages().stream().findAny().get().getPhotosImagePath()}" alt=">:(" style="height: 35rem; width: 40rem;" >
       <div class="carousel-caption d-none d-md-block">
       </div>
     </div>
@@ -107,6 +116,28 @@
 
  <hr/>
 
+<nav id="copyAlert" hidden class="navbar fixed-bottom opacity-75">
+    <div style="z-index: -1;  position: absolute; height: 5rem; width: 100%; text-align: center;">
+        <div class="alert" style=" font-color: black; border: none; background-color: #DDFFC6;" role="alert" th:text="#{page.urlKey}">
+            <span aria-hidden="true">&times;</span>
+        </div>
+    </div>
+</nav>
+
+
+</body>
+
+<script>
+  function copyToClipboard() {
+  navigator.clipboard.writeText(window.location.href);
+  document.getElementById("copyAlert").hidden = false;
+  setTimeout(() => {
+    document.getElementById("copyAlert").hidden = true;
+     }, 2000)
+ }
+
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -116,5 +147,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
 
-</body>
+
+
 </html>

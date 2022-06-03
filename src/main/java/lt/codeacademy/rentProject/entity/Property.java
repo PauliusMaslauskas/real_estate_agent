@@ -6,6 +6,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import java.util.Set;
+
+import static javax.persistence.CascadeType.ALL;
 
 @Entity
 @Getter
@@ -17,26 +20,26 @@ public class Property {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "PropertyType")
+    @Column(name = "Propertytype")
     private String propertytype;
 
     @Column(name = "Municipality")
     private String municipality;
 
-    @Column(name = "NoOfRooms")
-    private String noofrooms;
+    @Column(name = "Noofrooms")
+    private Integer noofrooms;
 
     @Column(name = "Area")
-    private String area;
+    private Integer area;
 
     @Column(name = "Equipment")
     private String equipment;
 
-    @Column(name = "PricePerSqMeter")
-    private String pricepersqmeter;
+    @Column(name = "Pricepersqmeter")
+    private Integer pricepersqmeter;
 
-    @Column(name = "BuitYear")
-    private String builtyear;
+    @Column(name = "Builtyear")
+    private Integer builtyear;
 
     @Column(name = "Floors")
     private String floors;
@@ -47,19 +50,23 @@ public class Property {
     @Column(name = "Seller")
     private String seller;
 
+    @Column(name = "Adress")
+    private String adress;
 
-    @Column(name = "price")
+    @Column(name = "Price")
     @Min(value = 0, message = "#{Min.property.price}")
     private Integer price;
 
-    @Column(name = "description")
+    @Column(name = "Description")
     private String description;
-
-
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="user_id")
     private User user;
+
+    @OneToMany(cascade=ALL, mappedBy = "property")
+    private Set<Image> images;
+
 
 }
 

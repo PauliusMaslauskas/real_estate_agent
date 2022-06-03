@@ -1,15 +1,12 @@
 package lt.codeacademy.rentProject.controller;
 
 import lt.codeacademy.rentProject.entity.Property;
+import lt.codeacademy.rentProject.service.ImageService;
 import lt.codeacademy.rentProject.service.PropertyService;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
@@ -17,9 +14,12 @@ import java.util.List;
 public class PagePublicController {
 
     private final PropertyService propertyService;
+    private final ImageService imageService;
 
-    public PagePublicController(PropertyService propertyService) {
+
+    public PagePublicController(PropertyService propertyService, ImageService imageService, ImageService imageService1) {
         this.propertyService = propertyService;
+        this.imageService = imageService1;
     }
 
     @GetMapping
@@ -48,4 +48,6 @@ public class PagePublicController {
         model.addAttribute("property", property);
         return "propertyPage";
     }
+
+
 }

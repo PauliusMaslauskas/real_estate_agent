@@ -1,15 +1,25 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
-<nav style="height: 10rem;" class="navbar navbar-light bg-light">
+<nav style="height: 10rem; background-image: url('https://st2.depositphotos.com/1172243/5471/i/950/depositphotos_54717751-stock-photo-white-brick-wall-for-background.jpg');
+                               height: 15rem;" class="navbar navbar-light bg-light">
   <div class="container-fluid">
-<h2>esatate  &</h2>
+
+
+    <h5 class=" mb-0" style=" font-weight: lighter; font-size: 45px;">
+    <i class="fas fa-cubes fa-3x me-3" style="color: black; font-size: 46px;"></i>
+    Estate&</h5>
+
+
     <span >
          <a th:href="@{?Lang=LT}"><img th:src="@{/images/ltflag.png}" style="width: 1.5rem; height: 1rem;"></a>
          <a th:href="@{?Lang=ENG}"><img th:src="@{/images/ukflag.png}" style="width: 1.5rem; height: 1rem;"></a>
          <a style="color: black; text-decoration: none;" th:text="'Signed in as' + ' ' + ${#authentication.name}"></a>
     </span>
-  </div>
+
+
+
 </div>
+ </div>
 </nav>
 
 <nav class="navbar sticky-top navbar-light bg-light">
@@ -18,11 +28,12 @@
     <a class="navbar-brand" style="underline: none; color: green;" type="button"  th:href="@{/private/properties/property}" th:text="#{listPropertyKey}"></a>
 
 <div class="d-flex align-items-center">
-    <a style="margin-right: 10px; color: black; outline: none;" role="" th:href="@{/login}" th:text="#{loginKey}"></a>
-    <a style="color: black; text-decoration: none;" th:href="@{/public/registration/register}" role="" th:text="#{registerKey}"></a>
-    <a style="color: black; text-decoration: none;" th:href="@{/private/favourites}" role="" th:text="#{favouriteKey}"></a>
+    <a style="margin-right: 10px; color: black; outline: none;" role="" th:href="@{/login}" th:text="#{login.loginToKey}"></a>
+    <a style="margin-right: 10px; color: black; text-decoration: none;" th:href="@{/public/registration/register}" role="" th:text="#{register.registerKey}"></a>
+    <a style="margin-right: 10px; color: black; text-decoration: none;" th:href="@{/logout}" role="" th:text="#{login.logoutKey}"></a>
+    <a style="margin-right: 10px; color: black; text-decoration: none;" th:href="@{/private/favourites}" role="" th:text="#{favouriteKey}"></a>
 
-        </div>
+
     </div>
 </nav>
 

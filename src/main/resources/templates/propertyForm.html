@@ -35,7 +35,7 @@
 
       <div th:replace="fragments/fragments :: html"></div>
 
-      <form style="margin-top: 5rem" th:action="@{/private/properties/postproperty}" th:object="${property}" method="post">
+      <form enctype="multipart/form-data" style="margin-top: 5rem" th:action="@{/private/properties/postproperty}" th:object="${property}" method="post">
          <div class="container overflow-hidden">
          <div class="row gy-5">
 
@@ -138,20 +138,29 @@
             </div>
          </div>
 
+         <div class="col-6">
+            <div class="p-3 border bg-light">
+               <h5 th:text="#{property.adressKey}"></h5>
+                    <input type="text" class="form-control text-dark bg-light" th:field="*{adress}" id="exampleFormControlInput2" placeholder="0">
+               </select>
+            </div>
+         </div>
+
+
          <div class="col-12">
             <div class="p-3 border bg-light">
                <h5 th:text="#{property.imageKey}"></h5>
                <div class="mb-3">
-                  <input class="form-control form-control-sm" id="formFileSm" type="file">
+<input type="file" name="image" accept="image/png, image/jpeg" />
+          </div>
+               <div class="mb-3">
+<input type="file" name="image" accept="image/png, image/jpeg" />
                </div>
                <div class="mb-3">
-                  <input class="form-control form-control-sm" id="formFileSm" type="file">
+<input type="file" name="image" accept="image/png, image/jpeg" />
                </div>
                <div class="mb-3">
-                  <input class="form-control form-control-sm" id="formFileSm" type="file">
-               </div>
-               <div class="mb-3">
-                  <input class="form-control form-control-sm" id="formFileSm" type="file">
+<input type="file" name="image" accept="image/png, image/jpeg" />
                </div>
             </div>
          </div>
