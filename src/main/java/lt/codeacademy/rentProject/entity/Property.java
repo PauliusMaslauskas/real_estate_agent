@@ -67,6 +67,8 @@ public class Property {
     @OneToMany(cascade=ALL, mappedBy = "property")
     private Set<Image> images;
 
+    @Transient
+    private String firstImagePath;
 
 }
 

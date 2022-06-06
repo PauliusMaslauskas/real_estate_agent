@@ -40,6 +40,11 @@
 
             <tr th:object="${property}">
 
+            <div th:each="property: ${properties}" class="p-2 flex-shrink-1">
+                <img th:src="${property.getFirstImagePath()}" alt=">:(" style="width: 8.2rem; height: 7.5rem; margin: -0.5rem;" >
+            </div>
+
+
             <span style=" width: 100%;">
                 <a th:text="${property.getMunicipality()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 1rem; margin-top: 0.2rem; font-weight: 500; font-size: 18px; display: block;"></a>
                 <a th:text="${property.getAdress()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 1rem; margin-top: 0.6rem; font-weight: lighter; font-size: 15px;"></a>

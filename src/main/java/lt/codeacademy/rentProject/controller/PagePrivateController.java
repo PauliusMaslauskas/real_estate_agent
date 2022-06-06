@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.annotation.MultipartConfig;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.Random;
 
 @Controller
@@ -43,6 +44,8 @@ public class PagePrivateController {
             return "propertyForm";
         }
 
+
+
         Property listedProperty = propertyService.create(property);
 
 
@@ -53,7 +56,7 @@ public class PagePrivateController {
             String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 
             if (fileName.equals("")) {
-                break;
+                continue;
             }
 
             String fileExtension = fileName.substring(fileName.lastIndexOf("."));
@@ -62,6 +65,7 @@ public class PagePrivateController {
             String randomFileName = String.valueOf(int_random);
 
             image.setPhotos(randomFileName + fileExtension);
+
             imageService.create(image, property);
 
             String uploadDir = "public/images/propertyImages";
