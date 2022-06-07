@@ -12,7 +12,7 @@
     text-decoration: none;
     color: black;
     }
-    </style>
+   </style>
 
 </head>
 
@@ -26,12 +26,13 @@
 
 <div class="d-flex border border-top-0 bg-light" th:each="property: ${properties}" style="margin-bottom: 2rem; margin-top: 2rem; ">
 
+   <tr th:object="${property}">
 
         <div class="p-2 flex-shrink-1">
            <img th:src="${property.getFirstImagePath()}" alt=">:(" style="width: 8.2rem; height: 7.5rem; margin: -0.5rem;" >
         </div>
 
-    <span>
+    <span style=" width: 100%;">
        <a th:text="${property.getMunicipality()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 1rem; margin-top: 0.2rem; font-weight: 500; font-size: 18px; display: block;"> </a>
        <a th:text="${property.getAdress()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 1rem; margin-top: 0.6rem; font-weight: lighter; font-size: 15px;"></a>
        <a th:text="${property.getBuiltyear()} + ' ' + m." th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 0.5rem; margin-top: 0.6rem; font-weight: lighter; font-size: 15px;"></a>
@@ -40,18 +41,34 @@
        <a th:text="#{property.roomsKey}" style="margin-top: 0.6rem; font-weight: lighter; font-size: 15px;"></a>
        <a th:text="${property.getPropertytype()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 1rem; margin-top: 0.2rem; font-weight: ; font-size: 18px; display: block;"></a>
        <a th:text="${property.getPrice()} + ' ' + €" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 1rem; font-weight: 500; font-size: 19px;"></a>
+       </span>
+
+     <span>
+         <form sec:authorize="hasAnyRole('ROLE_ADMIN')" th:action="@{/private/properties/delete/{id}(id=*{id})}"  method="post">
+            <button type="submit" style="border: none; background: none; float: left; margin-top: 3rem; margin-right: 2rem; color: black; font-size: 20px;">Delete</button>
+         </form>
+
     </span>
-
+    </tr>
 </div>
 
 
-<div style="text-align: center; margin-bottom: 2rem;">
-    <a th:href="@{/public/properties(page=${currentPage - 1})}"> < </a>
-    <span th:each="page: ${#numbers.sequence(0, totalPages - 1)}">
-                <a th:href="@{/public/properties(page=${page})}" th:text="${page + 1}"></a>
-            </span>
-    <a th:href="@{/public/properties(page=${currentPage + 1})}"> > </a>
-</div>
+<nav aria-label="...">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+       <a class="page-link" th:href="@{/public/properties(page=${currentPage - 1})}"> < </a>
+    </li>
+        <span th:each="page: ${#numbers.sequence(0, totalPages - 1)}">
+     <li class="page-item">
+            <a class="page-link" th:href="@{/public/properties(page=${page})}" th:text="${page + 1}"></a></li>
+        </span>
+            <li class="page-item">
+      <a class="page-link" th:href="@{/public/properties(page=${currentPage + 1})}"> > </a>
+    </li>
+    </li>
+  </ul>
+</nav>
+
 
 
  </body>

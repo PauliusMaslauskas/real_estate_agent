@@ -23,7 +23,7 @@ public class PagePublicController {
     @GetMapping
     public String getPropertyList(@RequestParam(name = "page", defaultValue = "0") int pageNumber, Model model) {
 
-        Page<Property> propertyPage = propertyService.findAllPagable(15, pageNumber);
+        Page<Property> propertyPage = propertyService.findAllPagable(5, pageNumber);
 
         List<Property> properties = propertyPage.getContent();
 
@@ -49,11 +49,9 @@ public class PagePublicController {
             Model model
     ) {
 
-
         Property property = propertyService.findById(id);
 
         property.getImages().stream().findFirst().get().setFirstImage(true);
-
 
         model.addAttribute("showPrice", showPrice);
         model.addAttribute("property", property);

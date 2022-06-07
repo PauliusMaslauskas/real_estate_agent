@@ -29,11 +29,10 @@
 
 <div th:replace="fragments/fragments :: html"></div>
 
-
  <hr/>
 
         <form th:action="@{/private/favourites/add/{id}(id=*{id})}" method="post" style="display: inline; height:100px;">
-            <button class="ok" type="submit" style="min-width: 72px; height: auto; display: inline-block; vertical-align: top; border: none; background: none;">
+            <button th:onclick="bookmark()" class="ok" type="submit" style="min-width: 72px; height: auto; display: inline-block; vertical-align: top; border: none; background: none;">
                 <i class="fas fa-heart" style="display: block; font-size: 23px;"></i>
                 <span th:text="#{addToFavouritesKey}"></span>
             </button>
@@ -47,7 +46,7 @@
 
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 
-  <div class="carousel-inner" style="height: 30rem; width: auto;">
+  <div class="carousel-inner" style="height: 35rem; width: auto;">
     <div th:each="imgsrc : ${property.getImages()}" class="carousel-item" th:classappend="${imgsrc.isFirstImage} ? active : none ">
         <img class="d-block w-100" th:src="${imgsrc.getPhotosImagePath()}" alt="First slide" >
     </div>
@@ -63,12 +62,6 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-
-
-
-
-
-
 
 
 
@@ -124,9 +117,20 @@
 </nav>
 
 
+<nav id="bookmarkAlert" hidden class="navbar fixed-bottom opacity-75">
+    <div style="z-index: -1;  position: absolute; height: 5rem; width: 100%; text-align: center;">
+        <div class="alert" style=" font-color: black; border: none; background-color: #DDFFC6;" role="alert" th:text="#{page.bookmarkKey}">
+            <span aria-hidden="true">&times;</span>
+        </div>
+    </div>
+</nav>
+
+
+
 </body>
 
 <script>
+
   function copyToClipboard() {
   navigator.clipboard.writeText(window.location.href);
   document.getElementById("copyAlert").hidden = false;
@@ -135,10 +139,17 @@
      }, 2000)
  }
 
-
-
+   function bookmark() {
+   document.getElementById("bookmarkAlert").hidden = false;
+   setTimeout(() => {
+   document.getElementById("bookmarkAlert").hidden = true;
+      }, 4000)
+  }
 
 </script>
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

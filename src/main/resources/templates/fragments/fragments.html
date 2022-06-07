@@ -13,7 +13,8 @@
     <span >
          <a th:href="@{?Lang=LT}"><img th:src="@{/images/ltflag.png}" style="width: 1.5rem; height: 1rem;"></a>
          <a th:href="@{?Lang=ENG}"><img th:src="@{/images/ukflag.png}" style="width: 1.5rem; height: 1rem;"></a>
-         <a style="color: black; text-decoration: none;" th:text="'Signed in as' + ' ' + ${#authentication.name}"></a>
+         <a style="color: black; text-decoration: none;" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" th:text="'Signed in as' + ' ' + ${#authentication.name}"></a>
+
     </span>
 
 
@@ -28,11 +29,10 @@
     <a class="navbar-brand" style="underline: none; color: green;" type="button"  th:href="@{/private/properties/property}" th:text="#{listPropertyKey}"></a>
 
 <div class="d-flex align-items-center">
-    <a style="margin-right: 10px; color: black; outline: none;" role="" th:href="@{/login}" th:text="#{login.loginToKey}"></a>
-    <a style="margin-right: 10px; color: black; text-decoration: none;" th:href="@{/public/registration/register}" role="" th:text="#{register.registerKey}"></a>
-    <a style="margin-right: 10px; color: black; text-decoration: none;" th:href="@{/logout}" role="" th:text="#{login.logoutKey}"></a>
-    <a style="margin-right: 10px; color: black; text-decoration: none;" th:href="@{/private/favourites}" role="" th:text="#{favouriteKey}"></a>
-
+    <a style="margin-right: 10px; color: black; outline: none;" th:if="!${#request.userPrincipal}" th:href="@{/login}" th:text="#{login.loginToKey}"></a>
+    <a style="margin-right: 10px; color: black; text-decoration: none;" th:if="!${#request.userPrincipal}" th:href="@{/public/registration/register}" role="" th:text="#{register.registerKey}"></a>
+    <a style="margin-right: 10px; color: black; text-decoration: none;" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" th:href="@{/logout}" role="" th:text="#{login.logoutKey}"></a>
+    <a style="margin-right: 10px; color: black; text-decoration: none;" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" th:href="@{/private/favourites}" role="" th:text="#{favouriteKey}"></a>
 
     </div>
 </nav>

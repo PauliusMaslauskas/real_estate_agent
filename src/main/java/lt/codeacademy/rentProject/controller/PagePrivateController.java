@@ -6,19 +6,19 @@ import lt.codeacademy.rentProject.entity.Property;
 import lt.codeacademy.rentProject.service.ImageService;
 import lt.codeacademy.rentProject.service.PropertyService;
 import lt.codeacademy.rentProject.utility.FileUploadUtil;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.annotation.MultipartConfig;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -39,7 +39,7 @@ public class PagePrivateController {
 
 
     @PostMapping("/postproperty")
-    public String postProperty(@Valid Property property, Integer id, BindingResult errors, Model model, @RequestParam("image") MultipartFile[] multipartFiles) throws IOException {
+    public String postProperty(@Valid Property property, BindingResult errors, Model model, @RequestParam("image") MultipartFile[] multipartFiles) throws IOException {
         if (errors.hasErrors()) {
             return "propertyForm";
         }
@@ -75,6 +75,15 @@ public class PagePrivateController {
 
         model.addAttribute("property", listedProperty);
         return "redirect:/public/properties/" + listedProperty.getId();
+    }
+
+
+
+    @PostMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String deleteFromPropertyList(@PathVariable("id") Integer id, Property property) {
+      propertyService.deleteById(property, id);
+        return "redirect:/public/properties";
     }
 
 

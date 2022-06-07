@@ -8,6 +8,7 @@ import lt.codeacademy.rentProject.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,6 +28,13 @@ public class PropertyService {
         property.setUser(principal);
         return propertyRepository.save(property);
     }
+
+    public  Property deleteById(Property property, int id){
+        propertyRepository.deleteById(id);
+        return property;
+    }
+
+
 
     public Property findById(int id){
         return propertyRepository

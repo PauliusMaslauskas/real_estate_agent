@@ -51,11 +51,15 @@
                 <a th:text="${property.getBuiltyear()} + ' ' + m." th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 0.5rem; margin-top: 0.6rem; font-weight: lighter; font-size: 15px;"></a>
                 <a th:text="${property.getEquipment()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 0.5rem; margin-top: 0.6rem; font-weight: lighter; font-size: 15px;"></a>
                 <a th:text="${property.getNoofrooms()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 0.5rem; margin-top: 0.6rem; font-weight: lighter; font-size: 15px;"></a>
-                <a th:text="#{property.roomsKey}" style="margin-top: 0.6rem; font-weight: lighter; font-size: 15px;"></a><a th:text="${property.getPropertytype()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 1rem; margin-top: 0.2rem; font-weight: ; font-size: 18px; display: block;"></a><a th:text="${property.getPrice()} + ' ' + €" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 1rem; font-weight: 500; font-size: 19px; display: block;"></a></span>
+                <a th:text="#{property.roomsKey}" style="margin-top: 0.6rem; font-weight: lighter; font-size: 15px;"></a>
+                <a th:text="${property.getPropertytype()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 1rem; margin-top: 0.2rem; font-weight: ; font-size: 18px; display: block;"></a>
+                <a th:text="${property.getPrice()} + ' ' + €" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 1rem; font-weight: 500; font-size: 19px; display: block;"></a>
+                </span>
 
                 <form th:action="@{/private/favourites/delete/{id}(id=*{id})}" method="post">
-                    <button type="submit" style="border: none; background: none; float: right; margin-top: 3rem; margin-right: -0.5rem; color: black; font-size: 25px;"> <i class="far fa-trash-alt"></i></button>
+                    <button type="submit" style="border: none; background: none; float: right;  margin-top: 4rem; color: black; font-size: 25px;"> <i class="far fa-trash-alt"></i></button>
                 </form>
+
             </span>
             </tr>
           </div>
