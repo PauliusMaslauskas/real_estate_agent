@@ -19,7 +19,6 @@
       border: 3px solid #73AD21;
       padding: 10px;
     }
-
    </style>
 
 
@@ -47,32 +46,20 @@
            <img th:src="${property.getFirstImagePath()}" alt=">:(" style="width: 8.2rem; height: 7.5rem; margin: -0.5rem;" >
         </div>
 
-    <span id="tevas" style=" width: 100%;">
-
-            <div style="display: inline">
-               <a th:text="${property.getMunicipality()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 1rem; margin-top: 0.2rem; font-weight: 500; font-size: 18px;"> </a>
-               <a th:text="${property.getAdress()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 0.2rem; margin-top: 0.6rem; font-weight: lighter; font-size: 15px;"></a>
-            </div>
-
-               <a th:text="${property.getPropertytype()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 1rem; margin-top: 0.2rem; font-weight: lighter; font-size: 18px; display: block;"></a>
-
-            <div style="display: block; margin-left: 0.5rem; margin-bottom: 0.5rem;">
+            <span style=" width: 100%;">
+               <a th:text="${property.getMunicipality()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 1rem; margin-top: 0.2rem; font-weight: 500; font-size: 18px; display: block;"> </a>
+               <a th:text="${property.getAdress()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 1rem; margin-top: 0.6rem; font-weight: lighter; font-size: 15px;"></a>
                <a th:text="${property.getBuiltyear()} + ' ' + m." th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 0.5rem; margin-top: 0.6rem; font-weight: lighter; font-size: 15px;"></a>
                <a th:text="${property.getEquipment()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 0.5rem; margin-top: 0.6rem; font-weight: lighter; font-size: 15px;"></a>
                <a th:text="${property.getNoofrooms()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 0.5rem; margin-top: 0.6rem; font-weight: lighter; font-size: 15px;"></a>
                <a th:text="#{property.roomsKey}" style="margin-top: 0.6rem; font-weight: lighter; font-size: 15px;"></a>
-            </div>
-
-                 <a th:text="${property.getPrice()} + ' ' + €" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 1rem; font-weight: 500; font-size: 19px;"></a>
-
-
-
-
-    </span>
+               <a th:text="${property.getPropertytype()}" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 1rem; margin-top: 0.2rem; font-weight: ; font-size: 18px; display: block;"></a>
+               <a th:text="${property.getPrice()} + ' ' + €" th:href="@{/public/properties/{id}(id=${property.getId()})}" style="margin-left: 1rem; font-weight: 500; font-size: 19px;"></a>
+            </span>
 
      <span>
          <form sec:authorize="hasAnyRole('ROLE_ADMIN')" th:action="@{/private/properties/delete/{id}(id=*{id})}"  method="post">
-            <button type="submit" style="border: none; background: none; float: left; margin-top: 3rem; margin-right: 2rem; color: black; font-size: 20px;" th:text="#{page.deletePropertyKey}"></button>
+            <button type="submit" style="border: none; background: none; float: left; margin-top: 3rem; margin-right: 2rem; color: black; font-size: 20px;">Delete</button>
          </form>
 
     </span>
@@ -105,7 +92,6 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-
 
 <script>
 

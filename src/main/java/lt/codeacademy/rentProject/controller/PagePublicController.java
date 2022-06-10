@@ -2,6 +2,7 @@ package lt.codeacademy.rentProject.controller;
 
 import lt.codeacademy.rentProject.entity.Property;
 import lt.codeacademy.rentProject.service.PropertyService;
+import lt.codeacademy.rentProject.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,16 +15,18 @@ import java.util.List;
 public class PagePublicController {
 
     private final PropertyService propertyService;
+    private final UserService userService;
 
 
-    public PagePublicController(PropertyService propertyService) {
+    public PagePublicController(PropertyService propertyService, UserService userService) {
         this.propertyService = propertyService;
+        this.userService = userService;
     }
 
     @GetMapping
     public String getPropertyList(@RequestParam(name = "page", defaultValue = "0") int pageNumber, Model model) {
 
-        Page<Property> propertyPage = propertyService.findAllPagable(5, pageNumber);
+        Page<Property> propertyPage = propertyService.findAllPagable(10, pageNumber);
 
         List<Property> properties = propertyPage.getContent();
 
@@ -53,6 +56,7 @@ public class PagePublicController {
 
         property.getImages().stream().findFirst().get().setFirstImage(true);
 
+        model.addAttribute("isPublic", true);
         model.addAttribute("showPrice", showPrice);
         model.addAttribute("property", property);
 

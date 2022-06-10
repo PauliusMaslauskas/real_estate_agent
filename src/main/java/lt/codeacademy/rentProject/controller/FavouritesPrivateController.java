@@ -25,7 +25,7 @@ public class FavouritesPrivateController {
     }
 
     @GetMapping
-    public String getFavouritesView(@ModelAttribute("favourites") List<Property> favourites, HttpSession httpSession) {
+    public String getFavouritesView(@ModelAttribute("favourites") List<Property> favourites) {
         return "propertyFavourites1";
     }
 

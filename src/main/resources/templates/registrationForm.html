@@ -34,11 +34,9 @@ color: black;
               <div class="card-body p-4 p-lg-5 text-black">
 
                 <form action="/public/registration/registerUser" th:object="${user}" method="POST" th:modelAttribute="user">
-    <div class="d-flex align-items-center mb-3 pb-1">
-                                <i class="fas fa-cubes fa-3x me-3" style="color: black; "></i>
-
-                                <h5 class=" mb-0" style="font-weight: lighter; font-size: 45px;">Estate&</h5>
-                          </div>
+                            <div class="d-flex align-items-center mb-3 pb-1">
+                                <img th:src="@{/images/pageLogo.png}" style="width: 15rem; height: 5rem; margin-bottom: -1.3rem;"/>
+                            </div>
 
                         <div th:if="${param.error}" th:text="#{login.BadCredentialsKey}" class="alert alert-danger" role="alert"></div>
 

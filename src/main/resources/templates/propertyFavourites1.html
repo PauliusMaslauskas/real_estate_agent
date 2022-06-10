@@ -31,7 +31,10 @@
       margin-left: auto;
       margin-right: auto;">
 
-    <div th:replace="fragments/fragments :: html"></div>
+    <div style="width: 100%;">
+        <div th:replace="fragments/fragmentsPartial :: html"></div>
+    </div>
+
     <div class="center" th:if="${!favourites.isEmpty()}">
 
       <div class="container">

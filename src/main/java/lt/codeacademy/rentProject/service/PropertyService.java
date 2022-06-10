@@ -8,7 +8,6 @@ import lt.codeacademy.rentProject.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -29,18 +28,17 @@ public class PropertyService {
         return propertyRepository.save(property);
     }
 
-    public  Property deleteById(Property property, int id){
-        propertyRepository.deleteById(id);
-        return property;
+    public void delete (Property property){
+        propertyRepository.delete(property);
     }
-
-
 
     public Property findById(int id){
         return propertyRepository
                 .findById(id)
                 .orElseThrow(PropertyNotFoundException::new);
     }
+
+
 
     public Page<Property> findAllPagable(int pageSize, int pageNumber){
         Pageable pageable = Pageable

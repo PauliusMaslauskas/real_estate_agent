@@ -3,6 +3,9 @@ package lt.codeacademy.rentProject.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -69,6 +72,7 @@ public class Property {
 
     @Transient
     private String firstImagePath;
+
 
 }
 

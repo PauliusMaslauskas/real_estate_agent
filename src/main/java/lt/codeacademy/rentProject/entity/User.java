@@ -44,8 +44,8 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    @OneToMany(cascade=ALL, mappedBy = "user")
-    private Set<Property> property;
+    @OneToMany(fetch = FetchType.EAGER, cascade=ALL, mappedBy = "user")
+    private Set<Property> properties;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
