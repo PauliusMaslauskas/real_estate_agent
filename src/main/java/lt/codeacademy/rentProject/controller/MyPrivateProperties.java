@@ -43,20 +43,17 @@ public class MyPrivateProperties {
         List<Property> properties = user.getProperties().stream().toList();
 
 
-        model.addAttribute("isPublic", false);
         model.addAttribute("properties", properties);
         model.addAttribute("currentPage", pageNumber);
         model.addAttribute("totalPages", propertyPage.getTotalPages());
 
-        return "propertyList";
+        return "propertyMyList";
     }
 
     @PostMapping("/delete/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     public String deleteFromPropertyList(@PathVariable("id") Integer id) {
-        Property property =  propertyService.findById(id);
-        property.setUser(null);
-        propertyService.delete(property);
+        propertyService.deleteById(id);
         return "redirect:/private/myproperties";
     }
 }

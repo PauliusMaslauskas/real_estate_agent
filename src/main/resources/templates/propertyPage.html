@@ -9,6 +9,12 @@
     <link th:href="@{/styles/cssandjs/mdb.min.css}" rel="stylesheet"/>
 
 <style>
+
+    a {
+    text-decoration: none;
+    color: black;
+    }
+
     hr {
       margin-top: 1rem;
       margin-bottom: 1rem;
@@ -18,16 +24,20 @@
 
     h4{
     font-weight: 100;
-    color: #999999;
+    color: #5c5c5c;
     font-size: 1.1rem;
     margin-bottom: 1rem;
     display: inline;
     }
 
+    h2{
+    color: #474747;
+    font-weight: 500;"
+    }
+
     .col{
     margin-bottom: 0.8rem;
     }
-
 
     h6{
     display:inline;
@@ -45,9 +55,11 @@
           background-color: #f5f5f5;">
 
     <div style="width: 100%;">
-        <div th:replace="fragments/fragmentsPartial :: html"></div>
+        <div th:replace="fragments/fragmentsFull :: html"></div>
     </div>
 
+ <hr style="margin-top: -0.5rem;"/>
+ <hr/>
 
         <form th:action="@{/private/favourites/add/{id}(id=*{id})}" method="post" style="display: inline; height:100px;">
             <button th:onclick="bookmark()" class="ok" type="submit" style="min-width: 72px; height: auto; display: inline-block; vertical-align: top; border: none; background: none;">
@@ -61,6 +73,7 @@
                  <span th:text="#{shareLinkKey}"></span>
            </button>
 
+ <hr/>
 
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 
@@ -92,62 +105,23 @@
 </div>
 
   <hr/>
-
   </div>
     <div th:object="${property}" style="color: red; font-weight: bold; margin-bottom:2rem;">
-        <h2 style="color: #1a0000; font-weight: 500;" th:text="*{price} + ' ' + €" ></h2>
+
+        <h2 th:text="*{price} + ' ' + €" ></h2>
+        <h4 style="margin-left: 0.2rem;" th:text="'(' + ${property.getPricepersqmeter() + ' ' +  '€/m²' + ')'}"></h4>
+
     </div>
 
-
+ <hr style="margin-top: -1rem;"/>
 
     <div th:object="${property}">
         <span style="display:inline;">
 
-<div class="container">
-
-  <div class="row">
-    <div class="col" > <h4 th:text="#{property.municipalityKey}"></h4></div>
-    <div class="col">  <h6 th:text="${property.getMunicipality()}"> </h6></div>
-
-    <div class="w-100"></div>
-    <div class="col"> <h4 th:text="#{property.adressKey}"></h4></div>
-    <div class="col"> <h6 th:text="${property.getAdress()}"></div>
-
-    <div class="w-100"></div>
-    <div class="col"> <h4 th:text="#{property.typeKey}"></h4></div>
-    <div class="col"> <h6 th:text="${property.getPropertytype()}"> </h6></div>
-
-    <div class="w-100"></div>
-    <div class="col"> <h4 th:text="#{property.SqMeterKey}"></h4></div>
-    <div class="col"> <h6 th:text="${property.getArea()} + ' ' + 'm2'"> </h6></div>
-
-    <div class="w-100"></div>
-    <div class="col"> <h4 th:text="#{property.floorsKey}"></h4></div>
-    <div class="col"> <h6 th:text="${property.getFloors()}"> </h6></div>
-
-    <div class="w-100"></div>
-    <div class="col"> <h4 th:text="#{property.floorKey}"></h4></div>
-    <div class="col"> <h6 th:text="${property.getFloor()}"> </h6></div>
-
-    <div class="w-100"></div>
-    <div class="col"> <h4 th:text="#{property.equipmentKey}"></h4></div>
-    <div class="col"> <h6 th:text="${property.getEquipment()}"> </h6></div>
-
-    <div class="w-100"></div>
-    <div class="col"><h4 th:text="#{property.buitYearKey}"></h4></div>
-    <div class="col"><h6 th:text="${property.getBuiltyear()}"> </h6></div>
-
-    <div class="w-100"></div>
-    <div class="col"><h4 th:text="#{property.sellerKey}"></h4></div>
-    <div class="col"><h6 th:text="${property.getSeller()}"> </h6></div>
-
-    <div class="w-100"></div>
-    <div class="col"><h4 th:text="#{property.sellerKey}"></h4></div>
-    <div class="col"><h6 th:text="${property.getSeller()}"> </h6></div>
-
-  </div>
+     <div class="container">
+       <div th:replace="fragments/fragmentsPropertyPageInfo"></div>
+     </div>
 </div>
-
         </span>
 
     </div>
@@ -167,6 +141,41 @@
         <p th:text="*{description}"></p>
     </div>
 
+    <hr/>
+
+
+<div>
+
+    <div th:if="!${#request.userPrincipal}">
+        <h4>Login to se owners credentials</h4>
+    </div>
+
+    <div sec:authorize="hasRole('ROLE_USER')">
+        <h2>Contacts</h2>
+        <div class="w-100"></div>
+        <div class="col" >
+            <div style="margin-left: 1rem;" th:object="${user}">
+                <span style="display: block; margin-bottom: 0.2rem;">
+                    <i class="fas fa-user-alt"></i>
+                    <h4 th:text="*{username}"> </h4>
+                </span>
+
+                <span style="display: block; margin-bottom: 0.2rem;">
+                     <i class="far fa-envelope"></i>
+                     <h4 th:text="*{email}"></h4>
+                </span>
+
+                 <span style="display: block;">
+                      <i class="fas fa-phone"></i>
+                      <h4 th:text="*{phonenumber}"></h6>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ <hr/>
  <hr/>
 
 <nav id="copyAlert" hidden class="navbar fixed-bottom opacity-75">
@@ -178,13 +187,6 @@
 </nav>
 
 
-<nav id="bookmarkAlert" hidden class="navbar fixed-bottom opacity-75">
-    <div style="z-index: -1;  position: absolute; height: 5rem; width: 100%; text-align: center;">
-        <div class="alert" style=" font-color: black; border: none; background-color: #DDFFC6;" role="alert" th:text="#{page.bookmarkKey}">
-            <span aria-hidden="true">&times;</span>
-        </div>
-    </div>
-</nav>
 
 
 </body>
@@ -198,13 +200,6 @@
     document.getElementById("copyAlert").hidden = true;
      }, 2000)
  }
-
-   function bookmark() {
-   document.getElementById("bookmarkAlert").hidden = false;
-   setTimeout(() => {
-   document.getElementById("bookmarkAlert").hidden = true;
-      }, 4000)
-  }
 
 </script>
 

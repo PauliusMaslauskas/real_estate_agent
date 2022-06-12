@@ -8,7 +8,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import static javax.persistence.CascadeType.ALL;
@@ -44,8 +46,8 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade=ALL, mappedBy = "user")
-    private Set<Property> properties;
+    @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true)
+    private List<Property> properties = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

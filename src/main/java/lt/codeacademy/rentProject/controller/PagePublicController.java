@@ -1,6 +1,7 @@
 package lt.codeacademy.rentProject.controller;
 
 import lt.codeacademy.rentProject.entity.Property;
+import lt.codeacademy.rentProject.entity.User;
 import lt.codeacademy.rentProject.service.PropertyService;
 import lt.codeacademy.rentProject.service.UserService;
 import org.springframework.data.domain.Page;
@@ -53,12 +54,13 @@ public class PagePublicController {
     ) {
 
         Property property = propertyService.findById(id);
+        User user = property.getUser();
 
         property.getImages().stream().findFirst().get().setFirstImage(true);
 
-        model.addAttribute("isPublic", true);
         model.addAttribute("showPrice", showPrice);
         model.addAttribute("property", property);
+        model.addAttribute("user", user);
 
         return "propertyPage";
     }

@@ -34,7 +34,7 @@ public class RegistrationController {
         user.setPassword(securityConfig.passwordEncoder().encode(user.getPassword()));
         User registeredUser = userService.create(user);
         model.addAttribute("user", registeredUser);
-        return "redirect:/public/properties/";
+        return "redirect:/login";
     }
 
 }

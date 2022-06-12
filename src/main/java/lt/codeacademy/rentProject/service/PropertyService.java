@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class PropertyService {
 
@@ -25,11 +27,16 @@ public class PropertyService {
     public Property create(Property property){
         User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         property.setUser(principal);
-        return propertyRepository.save(property);
+        property.setTimestamp(LocalDate.now());
+        property.setPricepersqmeter(property.getPrice() / property.getArea());
+            return propertyRepository.save(property);
     }
 
-    public void delete (Property property){
-        propertyRepository.delete(property);
+    public void deleteById (int id){
+        Property property = findById(id);
+        User user = property.getUser();
+        user.getProperties().remove(property);
+        userRepository.save(user);
     }
 
     public Property findById(int id){
@@ -38,7 +45,11 @@ public class PropertyService {
                 .orElseThrow(PropertyNotFoundException::new);
     }
 
-
+    public Property findByAdress(String adress){
+        return propertyRepository
+                .findByAdress(adress)
+                .orElseThrow(PropertyNotFoundException::new);
+    }
 
     public Page<Property> findAllPagable(int pageSize, int pageNumber){
         Pageable pageable = Pageable
@@ -47,5 +58,8 @@ public class PropertyService {
 
         return propertyRepository.findAll(pageable);
     }
+
+
+
 
 }

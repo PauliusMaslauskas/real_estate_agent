@@ -28,7 +28,7 @@ color: black;
         <div class="card" style="border-radius: 1rem;">
           <div class="row g-0">
             <div class="col-md-6 col-lg-5 d-none d-md-block">
-              <img src="https://c0.wallpaperflare.com/preview/1/703/828/fighter-jet-airshow.jpg" class="img-fluid" alt="Responsive image" style="height: 810px; border-radius: 1rem 0 0 1rem;" />
+              <img src="https://c0.wallpaperflare.com/preview/1/703/828/fighter-jet-airshow.jpg" class="img-fluid" alt="Responsive image" style="height: 900px; border-radius: 1rem 0 0 1rem;" />
             </div>
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
@@ -43,9 +43,8 @@ color: black;
                       <h5 class="fw-normal mb-3 pb-lg-3" style="letter-spacing: 1px; margin-top:2rem; font-size: 15px: " th:text="#{register.createKey}"></h5>
 
 
-
                           <div class="form-outline mb-4" style="margin-top:-1rem">
-                                <input type="text" name="name" id="form2Example17 validationTooltip02" class="form-control form-control-lg" required />
+                                <input type="text" name="firstname" id="form2Example17 validationTooltip02" class="form-control form-control-lg" required />
                                 <label class="form-label" for="form2Example17" th:text="#{register.firstnameKey}"></label>
                           </div>
 
@@ -58,19 +57,20 @@ color: black;
 
 
 
-
-
                           <div class="form-outline mb-4" style="margin-top:-1rem">
                                 <input type="text" name="username" id="form2Example17 validationTooltip02" class="form-control form-control-lg" required />
                                 <label class="form-label" for="form2Example17" th:text="#{register.usernameKey}"></label>
                           </div>
 
 
-
-
                           <div class="form-outline mb-4" style="margin-top:-1rem">
                                 <input type="email" name="email" id="form2Example27 validationTooltip02" class="form-control form-control-lg" required />
                                 <label class="form-label" for="form2Example27" th:text="#{register.emailKey}"></label>
+                          </div>
+
+                          <div class="form-outline mb-4" style="margin-top:-1rem">
+                                <input type="tel" name="phonenumber" id="form2Example27 validationTooltip02" class="form-control form-control-lg" required />
+                                <label class="form-label" for="form2Example27" th:text="#{register.phoneNumber}"></label>
                           </div>
 
                           <div class="form-outline mb-4" style="margin-top:-1rem">

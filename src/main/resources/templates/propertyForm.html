@@ -8,14 +8,31 @@
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
       <link th:href="@{/styles/cssandjs/mdb.min.css}" rel="stylesheet"/>
 
+   </head>
+
+
       <style>
-         span {
-         color: red;
+
+          a {
+          text-decoration: none;
+          color: black;
+          }
+
+         h5 {
+         text-align: center;
+         margin-bottom: 1rem;
+         font-weight: lighter;
          }
+
+         .preview{
+         margin-top: 1rem;
+         margin-bottom: 1rem;
+         width:11rem;
+         height:10.8rem;
+         }
+
       </style>
 
-
-   </head>
 
 <body  style="
           height: auto;
@@ -24,22 +41,11 @@
           margin-right: auto;
           background-color: #f5f5f5;">
 
-      <style>
-         h5 {
-         text-align: center;
-         margin-bottom: 1rem;
-         font-weight: lighter;
-         }
 
-         img{
-         margin-top: 1rem;
-         width:11rem;
-         height:10.8rem;
-         }
 
-      </style>
-
-      <div th:replace="fragments/fragmentsPartial :: html"></div>
+    <div style="width: 100%;">
+        <div th:replace="fragments/fragmentsFull :: html"></div>
+    </div>
 
       <form enctype="multipart/form-data" style="margin-top: 5rem" th:action="@{/private/properties/postproperty}" th:object="${property}" method="post">
          <div class="container overflow-hidden">
@@ -153,40 +159,40 @@
          </div>
 
 
-         <div class="col-12">
+ <div class="col-12">
             <div class="p-3 border bg-light">
                <h5 th:text="#{property.imageKey}"></h5>
-
                    <h5 style="font-size: 15px;" th:text="#{property.4imagesKey}"></h5>
+                    <div id="copyAlert" hidden class="alert" style="font-color: black; border: none; background-color: #ffc6c6;" role="alert" th:text="#{property.sizeToBigKey}"></div>
 
                <div class="mb-3">
                     <div>
                       <input type="file" aria-label="file example" name="image" class="form-control" multiple accept="image/*" onchange="previewFile(this)" required>
-                      <img height="100px"/>
+                      <img class="preview" height="100px"/>
                     </div>
                </div>
                <div class="mb-3">
                     <div>
                       <input type="file" aria-label="file example" name="image" class="form-control" multiple accept="image/*" onchange="previewFile(this)">
-                      <img height="100px"/>
+                      <img class="preview" height="100px"/>
                     </div>
                </div>
                <div class="mb-3">
                     <div>
                       <input type="file" aria-label="file example" name="image" class="form-control" multiple accept="image/*" onchange="previewFile(this)">
-                      <img height="100px"/>
+                      <img class="preview" height="100px"/>
                     </div>
                </div>
                <div class="mb-3">
                     <div>
                       <input type="file" aria-label="file example" name="image" class="form-control" multiple accept="image/*" onchange="previewFile(this)">
-                      <img height="100px"/>
+                      <img class="preview" height="100px"/>
                     </div>
                </div>
                <div class="mb-3">
                     <div>
                       <input type="file" aria-label="file example" name="image" class="form-control" multiple accept="image/*" onchange="previewFile(this)">
-                      <img height="100px"/>
+                      <img class="preview" height="100px"/>
                     </div>
                </div>
 
@@ -202,7 +208,7 @@
             </div>
          </div>
 
-         <input style="margin-bottom: 5rem" class="btn btn-outline-dark" type="submit" title="Create">
+         <input id="submit" style="width: 100%; margin-bottom: 5rem" class="btn btn-outline-dark" type="submit" title="Create">
 
       </form>
 
@@ -212,6 +218,7 @@ function previewFile(input) {
   var preview = input.nextElementSibling;
   var file = input.files[0];
   var reader = new FileReader();
+  var imgSize = true;
 
   reader.onloadend = function() {
     preview.src = reader.result;
@@ -222,8 +229,24 @@ function previewFile(input) {
   } else {
     preview.src = "";
   }
+
+//Nepabaigta!!
+
+if (file.size > 2000000) {
+  navigator.clipboard.writeText(window.location.href);
+  document.getElementById("copyAlert").hidden = false;
+  document.getElementById("submit").disabled = true;
+
+  }else{
+  navigator.clipboard.writeText(window.location.href);
+  document.getElementById("copyAlert").hidden = true;
+  document.getElementById("submit").disabled = false;
+  }
 }
 </script>
+
+
+
 
 
    </body>

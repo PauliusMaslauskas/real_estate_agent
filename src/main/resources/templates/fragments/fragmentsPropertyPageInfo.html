@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col" > <h4 th:text="#{property.municipalityKey}"></h4></div>
+    <div class="col">  <h6 th:text="${property.getMunicipality()}"> </h6></div>
+
+    <div class="w-100"></div>
+    <div class="col"> <h4 th:text="#{property.adressKey}"></h4></div>
+    <div class="col"> <h6 th:text="${property.getAdress()}"></div>
+
+    <div class="w-100"></div>
+    <div class="col"> <h4 th:text="#{property.pricePerSqMeterKey}"></h4></div>
+    <div class="col"> <h6 th:text="${property.getPricepersqmeter() + ' ' +  '€/m²'}"></div>
+
+    <div class="w-100"></div>
+    <div class="col"> <h4 th:text="#{property.typeKey}"></h4></div>
+    <div class="col"> <h6 th:text="${property.getPropertytype()}"> </h6></div>
+
+    <div class="w-100"></div>
+    <div class="col"> <h4 th:text="#{property.SqMeterKey}"></h4></div>
+    <div class="col"> <h6 th:text="${property.getArea()} + ' ' + 'm2'"> </h6></div>
+
+    <div class="w-100"></div>
+    <div class="col"> <h4 th:text="#{property.floorsKey}"></h4></div>
+    <div class="col"> <h6 th:text="${property.getFloors()}"> </h6></div>
+
+    <div class="w-100"></div>
+    <div class="col"> <h4 th:text="#{property.floorKey}"></h4></div>
+    <div class="col"> <h6 th:text="${property.getFloor()}"> </h6></div>
+
+    <div class="w-100"></div>
+    <div class="col"> <h4 th:text="#{property.equipmentKey}"></h4></div>
+    <div class="col"> <h6 th:text="${property.getEquipment()}"> </h6></div>
+
+    <div class="w-100"></div>
+    <div class="col"><h4 th:text="#{property.buitYearKey}"></h4></div>
+    <div class="col"><h6 th:text="${property.getBuiltyear()}"> </h6></div>
+
+    <div class="w-100"></div>
+    <div class="col"><h4 th:text="#{property.sellerKey}"></h4></div>
+    <div class="col"><h6 th:text="${property.getSeller()}"> </h6></div>
+
+    <div class="w-100"></div>
+    <div class="col"><h4 th:text="#{property.timeListed}"></h4></div>
+    <div class="col"><h6 th:text="${property.getTimestamp()}"> </h6></div>

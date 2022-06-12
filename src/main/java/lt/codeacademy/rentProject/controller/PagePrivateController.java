@@ -77,14 +77,10 @@ public class PagePrivateController {
     }
 
 
-    //Du kartus paspausti delete.
-    //Nepavyko trinti per My properties, istrindavo tik user_id.
     @PostMapping("/delete/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public String deleteFromPropertyList(@PathVariable("id") Integer id) {
-      Property property =  propertyService.findById(id);
-      property.setUser(null);
-      propertyService.delete(property);
+      propertyService.deleteById(id);
         return "redirect:/public/properties";
     }
 

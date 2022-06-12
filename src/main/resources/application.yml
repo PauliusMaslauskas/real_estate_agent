@@ -5,6 +5,7 @@ spring:
     password: admin
     initialization-mode: never
 
+
   jpa:
     hibernate:
       ddl-auto: none
@@ -18,7 +19,10 @@ spring:
       name: admin
       password: admin
 
+
+
 server:
+  port: 8081
   error:
     whitelabel:
       enabled: false
