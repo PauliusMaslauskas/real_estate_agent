@@ -3,16 +3,11 @@ package lt.codeacademy.rentProject.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Set;
 
 import static javax.persistence.CascadeType.ALL;
@@ -74,12 +69,11 @@ public class Property {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToMany(cascade=ALL, mappedBy = "property")
+    @OneToMany(cascade = ALL, mappedBy = "property")
     private Set<Image> images;
 
     @Transient
     private String firstImagePath;
-
 
 
 }

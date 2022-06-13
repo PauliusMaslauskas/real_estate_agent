@@ -21,12 +21,12 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-    public User create(User user){
+    public User create(User user) {
         setUserRole(user);
         return userRepository.save(user);
-  }
+    }
 
-    public User setUserRole(User user){
+    public User setUserRole(User user) {
         Role role = new Role();
         role.setRole(RolesAuthority.USER);
         role.setId(2);
@@ -37,19 +37,18 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
-    public User findById(int id){
+    public User findById(int id) {
         return userRepository.findById(id).orElseThrow();
     }
 
-    public User findByUsername(String username){
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
     }
 
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(( username + "was not found!")));
+        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException((username + "was not found!")));
 
     }
 

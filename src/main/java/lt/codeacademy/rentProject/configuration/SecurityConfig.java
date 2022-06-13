@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(){
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(passwordEncoder());
         provider.setUserDetailsService(userService);
@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.
                 csrf().disable()
                 .authorizeRequests()
-                .antMatchers( "/public/**","/login/**", "/logout/**", "/error/**").permitAll()
+                .antMatchers("/public/**", "/login/**", "/logout/**", "/error/**").permitAll()
                 .and().authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
@@ -67,7 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/public/properties",true)
+                .defaultSuccessUrl("/public/properties", true)
                 .failureUrl("/login?error=true")
                 .and()
                 .logout()

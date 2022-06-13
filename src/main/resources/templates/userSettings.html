@@ -68,10 +68,12 @@
       <img th:src="@{/images/userIcon.png}" class="center" style="margin-top: 1rem; width: 8rem; height: 8rem; border-radius: 50%; border: solid; border-color: #5c5c5c; border-width: 0.1rem;"/>
 
 
-<form action="/private/user/update" th:object="${user}" method="POST" th:modelAttribute="user">
+<form th:action="@{/private/user/update}" th:object="${user}" method="POST" th:modelAttribute="user">
+
+
 
     <div th:object="${user}">
-
+     <input type="file" aria-label="file example" name="image" class="form-control" disabled  onchange="previewFile(this)">
         <span>
         <h6 th:text="#{register.firstnameKey}"> </h6>
         <input th:value="*{firstname}" type="text" name="firstname" class="form-control form-control-lg" required />
@@ -96,7 +98,6 @@
         <h6 th:text="#{register.phoneNumber}"> </h6>
         <input th:value="*{phonenumber}" type="text" name="phonenumber" class="form-control form-control-lg" required />
         </spam>
-
     </div>
         <input style="margin-bottom: 1rem; margin-top: 1rem; height: 3rem;" type="submit" class="btn btn-dark btn-lg btn-block" th:value="#{user.saveKey}"></input>
 </form>

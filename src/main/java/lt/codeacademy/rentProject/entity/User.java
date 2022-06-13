@@ -43,11 +43,17 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
+
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
     @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true)
     private List<Property> properties = new ArrayList<>();
+/*
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "image_id")
+    private Image image;
+*/
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

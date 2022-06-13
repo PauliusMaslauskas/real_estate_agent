@@ -7,6 +7,7 @@ import lt.codeacademy.rentProject.repository.PropertyRepository;
 import lt.codeacademy.rentProject.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -24,34 +25,34 @@ public class PropertyService {
         this.userRepository = userRepository;
     }
 
-    public Property create(Property property){
+    public Property create(Property property) {
         User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         property.setUser(principal);
         property.setTimestamp(LocalDate.now());
         property.setPricepersqmeter(property.getPrice() / property.getArea());
-            return propertyRepository.save(property);
+        return propertyRepository.save(property);
     }
 
-    public void deleteById (int id){
+    public void deleteById(int id) {
         Property property = findById(id);
         User user = property.getUser();
         user.getProperties().remove(property);
         userRepository.save(user);
     }
 
-    public Property findById(int id){
+    public Property findById(int id) {
         return propertyRepository
                 .findById(id)
                 .orElseThrow(PropertyNotFoundException::new);
     }
 
-    public Property findByAdress(String adress){
+    public Property findByAdress(String adress) {
         return propertyRepository
                 .findByAdress(adress)
                 .orElseThrow(PropertyNotFoundException::new);
     }
 
-    public Page<Property> findAllPagable(int pageSize, int pageNumber){
+    public Page<Property> findAllPagable(int pageSize, int pageNumber) {
         Pageable pageable = Pageable
                 .ofSize(pageSize)
                 .withPage(pageNumber);
@@ -59,7 +60,15 @@ public class PropertyService {
         return propertyRepository.findAll(pageable);
     }
 
+    public Page<Property> findAllByPrice(double price, int pageSize, int pageNumber) {
 
+        Pageable pageable = Pageable.ofSize(pageSize).withPage(pageNumber);
+
+        Page<Property> allProductsSortedByPrice = (Page<Property>) propertyRepository.findAll(Sort.by("price"));
+
+        return propertyRepository.findAll((Pageable) allProductsSortedByPrice);
+
+    }
 
 
 }

@@ -2,6 +2,7 @@ package lt.codeacademy.rentProject.service;
 
 import lt.codeacademy.rentProject.entity.Image;
 import lt.codeacademy.rentProject.entity.Property;
+import lt.codeacademy.rentProject.entity.User;
 import lt.codeacademy.rentProject.repository.ImageRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +15,17 @@ public class ImageService {
         this.imageRepository = imageRepository;
     }
 
-    public Image create(Image image, Property property){
+    public Image create(Image image, Property property) {
         image.setProperty(property);
         return imageRepository.save(image);
     }
 
+/*
 
+    public Image createUserImage(Image image, User user){
+        image.setUser(user);
+        return imageRepository.save(image);
+    }
+
+*/
 }

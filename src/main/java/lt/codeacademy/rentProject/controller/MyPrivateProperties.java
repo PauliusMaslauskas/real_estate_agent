@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-
 @Controller
 @RequestMapping("/private/myproperties")
 @SessionAttributes("myproperties")
@@ -33,8 +32,7 @@ public class MyPrivateProperties {
     @GetMapping
     public String myProperties(
             @RequestParam(name = "page", defaultValue = "0")
-            int pageNumber, Model model)
-    {
+                    int pageNumber, Model model) {
 
         Page<Property> propertyPage = propertyService.findAllPagable(10, pageNumber);
 

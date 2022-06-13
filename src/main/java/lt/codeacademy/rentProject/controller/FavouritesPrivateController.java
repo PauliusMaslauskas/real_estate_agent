@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class FavouritesPrivateController {
     @PostMapping("/delete/{id}")
     public String deleteFromFavourites(@PathVariable("id") Integer id, @ModelAttribute("favourites") List<Property> favourites) {
         favourites.stream()
-                .filter(p-> p.getId().equals(id))
+                .filter(p -> p.getId().equals(id))
                 .findFirst()
                 .ifPresent(favourites::remove);
         return "redirect:/private/favourites";

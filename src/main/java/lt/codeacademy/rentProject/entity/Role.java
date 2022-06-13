@@ -2,10 +2,11 @@ package lt.codeacademy.rentProject.entity;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+
 import javax.persistence.*;
 import java.util.Objects;
 
-@Table(name="roles")
+@Table(name = "roles")
 @Entity
 @Getter
 @Setter
@@ -19,7 +20,6 @@ public class Role {
 
     @Enumerated(EnumType.STRING)
     private RolesAuthority role;
-
 
 
     @Override

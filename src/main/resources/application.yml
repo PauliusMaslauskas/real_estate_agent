@@ -5,7 +5,6 @@ spring:
     password: admin
     initialization-mode: never
 
-
   jpa:
     hibernate:
       ddl-auto: none
@@ -18,8 +17,6 @@ spring:
     user:
       name: admin
       password: admin
-
-
 
 server:
   port: 8081

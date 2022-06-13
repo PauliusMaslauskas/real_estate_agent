@@ -1,106 +1,70 @@
 <html xmlns:th="https://www.thymeleaf.org">
+  <style>
+    .navbar-brand {
+      font-size: 1.6rem;
+    }
 
-<style>
-.navbar-brand{
-font-size: 1.6rem;
+    .sign {
+      font-size: 1.2rem;
+    }
 
-}
-
-.sign{
-font-size: 1.2rem;
-}
-
-.dropdown{
-margin-top: -0.4rem;
-margin-right: 1.5rem;
-
-}
-
-</style>
-
-
-
-<header>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-    <div class="container-fluid" style="width: 100%;">
-      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01" aria-controls="navbarExample01"aria-expanded="false" aria-label="Toggle navigation"> <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarExample01" style="color: black;" >
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-           <img th:src="@{/images/pageLogo.png}" style="width: 8rem; margin-left: 1rem; float: left; height: 2.5rem; border: 3px solid #525252; border-radius: 0 8px 0 8px; border-top: none; border-bottom: none; border-right: none ;"/>
-
-          <li class="nav-item active" style="margin-left: 15rem;">
-                <a class="nav-link" th:href="@{/public/properties}" th:text="#{nav.homePageKey}"></a>
-          </li>
-          <li class="nav-item">
-                <a class="nav-link" th:href="@{/public/properties}" th:text="#{nav.rentKey}"></a>
-          </li>
-          <li class="nav-item">
-                <a class="nav-link" th:href="@{/public/properties}" th:text="#{nav.buyKey}"></a>
-          </li>
-          <li class="nav-item">
-                <a class="nav-link" th:href="@{/public/properties}" th:text="#{nav.aboutUsKey}"></a>
-          </li>
-          <li class="nav-item">
-                <a class="nav-link" style="width: 20rem" th:href="@{/private/properties/property}" th:text="#{listPropertyKey}"></a>
-          </li>
-
-
-        </ul>
-      </div>
-    </div>
-
-                <div style=" width: 100%;">
-
-
-                          <a th:href="@{?Lang=LT}"><img th:src="@{/images/ltflag.png}" style="margin-top: 0.25rem; margin-right: 1rem; float: right; width: 1.5rem; height: 1rem;"></a>
-                          <a th:href="@{?Lang=ENG}"><img th:src="@{/images/ukflag.png}" style="margin-top: 0.25rem; margin-right: 0.5rem; float: right; width: 1.5rem; height: 1rem;"></a>
-
-
-                          <div class="dropdown" style="float: right;">
-                              <button class="btn btn-secondary dropdown-toggle" th:text="${#authentication.name}" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" style="background: none; color: rgba(0,0,0,.55); border: none;" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-
-                              <button class="dropdown-item" type="button">
-                                <a style="color: rgba(0,0,0,.55); margin-right: 1rem; float: left;" th:href="@{/logout}" th:text="#{login.logoutKey}"></a>
-                              </button>
-
-                              <button class="dropdown-item" type="button">
-                                  <a style="color: rgba(0,0,0,.55); margin-right: 1rem; float: left;" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" th:href="@{/private/favourites}"th:text="#{favouriteKey}"></a>
-                              </button>
-
-                              <button class="dropdown-item" type="button">
-                                <a style="color: rgba(0,0,0,.55); margin-right: 1rem; float: left;" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" th:href="@{/private/user}" th:text="#{nav.userSettingsKey}"></a>
-                              </button>
-
-                          </div>
-                          </div>
-
-
-                          <a style="color: rgba(0,0,0,.55); margin-right: 3rem; float: right;" th:if="!${#request.userPrincipal}" th:href="@{/public/registration/register}" role="" th:text="#{register.registerKey}"></a>
-                          <a style="color: rgba(0,0,0,.55); margin-right: 1rem; float: right;" th:if="!${#request.userPrincipal}" th:href="@{/login}" th:text="#{login.loginToKey}"></a>
-
-
-                </div>
-
-  </nav>
-
-
-  <div class="p-5 text-center bg-image" style="background-image: url('https://images.pexels.com/photos/4286939/pexels-photo-4286939.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); height: 280px; margin-top: 58px;">
- <div class="container-fluid">
+    .dropdown {
+      margin-top: -0.4rem;
+      margin-right: 1.5rem;
+    }
+  </style>
+  <header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+      <div class="container-fluid" style="width: 100%;">
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01" aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarExample01" style="color: black;">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <img th:src="@{/images/pageLogo.png}" style="width: 8rem; margin-left: 1rem; float: left; height: 2.5rem; border: 3px solid #525252; border-radius: 0 8px 0 8px; border-top: none; border-bottom: none; border-right: none ;" />
+            <li class="nav-item active" style="margin-left: 15rem;">
+              <a class="nav-link" th:href="@{/public/properties}" th:text="#{nav.homePageKey}"></a>
+            <li class="nav-item">
+              <a class="nav-link" style="width: 20rem" th:href="@{/private/properties/property}" th:text="#{listPropertyKey}"></a>
+            </li>
+          </ul>
         </div>
-  </div>
-
-</header>
-
-
-    <nav class="navbar navbar-light">
-
       </div>
-    </nav>
-
-<div>
-
-</html>
+      <div style=" width: 100%;">
+        <a th:href="@{?Lang=LT}">
+          <img th:src="@{/images/ltflag.png}" style="margin-top: 0.25rem; margin-right: 1rem; float: right; width: 1.5rem; height: 1rem;">
+        </a>
+        <a th:href="@{?Lang=ENG}">
+          <img th:src="@{/images/ukflag.png}" style="margin-top: 0.25rem; margin-right: 0.5rem; float: right; width: 1.5rem; height: 1rem;">
+        </a>
+        <div class="dropdown" style="float: right;">
+          <button class="btn btn-secondary dropdown-toggle" th:text="${#authentication.name}" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" style="background: none; color: rgba(0,0,0,.55); border: none;" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+									<button class="dropdown-item" type="button">
+										<a style="color: rgba(0,0,0,.55); margin-right: 1rem; float: left;" th:href="@{/logout}" th:text="#{login.logoutKey}"></a>
+									</button>
+									<button class="dropdown-item" type="button">
+										<a style="color: rgba(0,0,0,.55); margin-right: 1rem; float: left;" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" th:href="@{/private/favourites}"th:text="#{favouriteKey}"></a>
+									</button>
+									<button class="dropdown-item" type="button">
+										<a style="color: rgba(0,0,0,.55); margin-right: 1rem; float: left;" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" th:href="@{/private/myproperties}"th:text="#{nav.myPropertiesKey}"></a>
+									</button>
+									<button class="dropdown-item" type="button">
+										<a style="color: rgba(0,0,0,.55); margin-right: 1rem; float: left;" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" th:href="@{/private/user}" th:text="#{nav.userSettingsKey}"></a>
+									</button>
+								</div>
+							</div>
+							<a style="color: rgba(0,0,0,.55); margin-right: 3rem; float: right;" th:if="!${#request.userPrincipal}" th:href="@{/public/registration/register}" role="" th:text="#{register.registerKey}"></a>
+							<a style="color: rgba(0,0,0,.55); margin-right: 1rem; float: right;" th:if="!${#request.userPrincipal}" th:href="@{/login}" th:text="#{login.loginToKey}"></a>
+						</div>
+					</nav>
+					<div class="p-5 text-center bg-image" style="background-image: url('https://images.pexels.com/photos/4286939/pexels-photo-4286939.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); height: 280px; margin-top: 58px;">
+						<div class="container-fluid"></div>
+					</div>
+				</header>
+				<nav class="navbar navbar-light">
+				</div>
+			</nav>
+			<div>
+			</html>
